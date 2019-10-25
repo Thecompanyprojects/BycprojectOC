@@ -1,0 +1,38 @@
+//
+//  PrefixHeader.pch
+//  Bycproject
+//
+//  Created by 王俊钢 on 2019/10/15.
+//  Copyright © 2019 wangjungang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "AppDelegate.h"
+#import "UIColor+HexString.h"
+#import "wangHeader.h"
+#import <Masonry/Masonry.h>
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import <SDCycleScrollView/SDCycleScrollView.h>
+#import "companyViewController.h"
+#import <SDAutoLayout/SDAutoLayout.h>
+#import "DKSButton.h"
+#import "loginView.h"
+#import "MBProgressHUD+JJ.h"
+#import "WangConst.h"
+#import <MJRefresh/MJRefresh.h>
+#import "NetManager.h"
+#import "MainViewController.h"
+#import <YYModel/YYModel.h>
+#import "AgencyModel.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import <GTMBase64/GTMBase64.h>
+#import "NSObject+CompressImage.h"
+#import "UploadImageApi.h"
+#import "ZZQAvatarPicker.h"
+#import "NSDate+Category.h"
+#import "UIColor+Extension.h"
+
+#endif /* PrefixHeader_pch */
