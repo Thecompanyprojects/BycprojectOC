@@ -93,9 +93,7 @@
             /*看需求定义一个全局变量来接收赋值*/
             NSLog(@"----%@",placeMark.country);//当前国家
             NSLog(@"%@",self->currentCity);//当前的城市
-//            NSLog(@"%@",self->placeMark.subLocality);//当前的位置
-//            NSLog(@"%@",self->placeMark.thoroughfare);//当前街道
-//            NSLog(@"%@",self->placeMark.name);//具体地址
+            [[NSUserDefaults standardUserDefaults] setObject:self->currentCity forKey:@"addname"];
             
         }
     }];

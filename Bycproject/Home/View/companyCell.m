@@ -31,6 +31,14 @@
     return self;
 }
 
+- (void)setModel:(companyModel *)model
+{
+    [self.bgImg sd_setImageWithURL:[NSURL URLWithString:model.companyLogo] placeholderImage:[UIImage imageNamed:@""]];
+    self.nameLab.text = model.companyName?:@"";
+    self.contentLab.text = [NSString stringWithFormat:@"%@%ld%@%ld",@"案例: ",model.demoTotal,@"工地: ",model.constructionTotal];
+    self.addressLab.text = model.distance;
+}
+
 -(void)setuplayout
 {
     __weak typeof (self) weakSelf = self;
@@ -65,7 +73,6 @@
     if(!_bgImg)
     {
         _bgImg = [[UIImageView alloc] init];
-        _bgImg.backgroundColor = [UIColor orangeColor];
         _bgImg.contentMode = UIViewContentModeScaleAspectFill;
         _bgImg.clipsToBounds = YES;
         _bgImg.layer.masksToBounds = YES;
@@ -81,7 +88,6 @@
         _nameLab = [[UILabel alloc] init];
         _nameLab.textColor = [UIColor colorWithHexString:@"#262626"];
         _nameLab.font = [UIFont systemFontOfSize:15];
-        _nameLab.text = @"这个地方是公司名称";
     }
     return _nameLab;
 }
@@ -93,7 +99,6 @@
         _contentLab = [[UILabel alloc] init];
         _contentLab.textColor = [UIColor colorWithHexString:@"#666666"];
         _contentLab.font = [UIFont systemFontOfSize:11];
-        _contentLab.text = @"案例：15  工地：12";
         
     }
     return _contentLab;
@@ -107,7 +112,6 @@
         _addressLab = [[UILabel alloc] init];
         _addressLab.textAlignment = NSTextAlignmentRight;
         _addressLab.font = [UIFont systemFontOfSize:11];
-        _addressLab.text = @"1121221lm";
         _addressLab.textColor = [UIColor colorWithHexString:@"#666666"];
     }
     return _addressLab;

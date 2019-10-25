@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface caseCell : UITableViewCell
-
+@property (nonatomic,strong) caseModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

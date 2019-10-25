@@ -13,6 +13,7 @@
 @property (nonatomic,strong) UILabel *contentLab;
 @property (nonatomic,strong) UIImageView *rightImg;
 @property (nonatomic,strong) UILabel *timeLab;
+@property (nonatomic,strong) DKSButton *starBtn;
 @end
 
 @implementation strategyCell
@@ -26,9 +27,19 @@
         [self.contentView addSubview:self.contentLab];
         [self.contentView addSubview:self.rightImg];
         [self.contentView addSubview:self.timeLab];
+        [self.contentView addSubview:self.starBtn];
         [self setuplayout];
     }
     return self;
+}
+
+- (void)setModel:(strategyModel *)model
+{
+    [self.rightImg sd_setImageWithURL:[NSURL URLWithString:model.demoLogo] placeholderImage:[UIImage imageNamed:@""]];
+    self.titleLab.text = model.title?:@"";
+    self.contentLab.text = model.subTitle?:@"";
+    self.timeLab.text = model.time?:@"";
+    [self.starBtn setTitle:[NSString stringWithFormat:@"%ld",model.starNum] forState:normal];
 }
 
 -(void)setuplayout
@@ -56,6 +67,13 @@
         make.top.equalTo(weakSelf.contentLab.mas_bottom).with.offset(10);
         
     }];
+    
+    [weakSelf.starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.timeLab);
+        make.right.equalTo(weakSelf.contentLab);
+        make.width.mas_offset(40);
+        make.height.mas_offset(12);
+    }];
 }
 
 #pragma mark - getters
@@ -67,7 +85,7 @@
         _titleLab = [UILabel new];
         _titleLab.textColor = [UIColor colorWithHexString:@"444444"];
         _titleLab.font = [UIFont systemFontOfSize:13];
-        _titleLab.text = @"管道保温材料有哪些？";
+     
     }
     return _titleLab;
 }
@@ -79,7 +97,6 @@
         _contentLab = [UILabel new];
         _contentLab.font = [UIFont systemFontOfSize:10];
         _contentLab.textColor = [UIColor colorWithHexString:@"777777"];
-        _contentLab.text = @"在我们生活中，大家一定接触到保温材料吧，今天小编就给大家详细讲解一下生活中的保温材料有就看得见我我偶就考虑到数据库发哦ID是否";
         _contentLab.numberOfLines = 2;
     }
     return _contentLab;
@@ -90,7 +107,6 @@
     if(!_rightImg)
     {
         _rightImg = [UIImageView new];
-        _rightImg.backgroundColor = [UIColor orangeColor];
         _rightImg.layer.masksToBounds = YES;
         _rightImg.layer.cornerRadius = 5;
         _rightImg.contentMode = UIViewContentModeScaleAspectFill;
@@ -111,5 +127,18 @@
 }
 
 
+-(DKSButton *)starBtn
+{
+    if(!_starBtn)
+    {
+        _starBtn = [[DKSButton alloc] init];
+        [_starBtn setImage:[UIImage imageNamed:@"icon_xx"] forState:normal];
+        _starBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        [_starBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:normal];
+        _starBtn.buttonStyle = DKSButtonImageLeft;
+        _starBtn.padding = 12;
+    }
+    return _starBtn;
+}
 
 @end

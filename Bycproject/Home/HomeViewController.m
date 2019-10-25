@@ -20,6 +20,11 @@
 @property (nonatomic,strong) MenuView *menuview;
 @property (nonatomic, strong) XXPageTabView *pageTabView;
 @property (nonatomic,strong) UIView *navTitleView;
+
+@property (nonatomic,strong) DKSButton *addressBtn;
+@property (nonatomic,strong) UITextField *search;
+
+@property (nonatomic,copy) NSString *provinceId;
 @property (nonatomic,copy) NSString *cityId;
 @property (nonatomic,copy) NSString *countyId;
 @property (nonatomic,copy) NSString *addName;
@@ -29,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self vhl_setNavBarShadowImageHidden:YES];
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = self.navTitleView;
     [self createtapView];
@@ -41,7 +47,6 @@
         self.menuview.frame = CGRectMake(0, 64, WIDTH, 180);
     }
     [self.view addSubview:self.menuview];
-    
     [self getinfofromweb];
 }
 
@@ -64,39 +69,58 @@
     {
         _navTitleView = [UIView new];
         _navTitleView.backgroundColor = [UIColor colorWithHexString:@"F3F3F3"];
+        _navTitleView.backgroundColor = [UIColor whiteColor];
         if (@available(iOS 11.0, *)){
             _navTitleView.translatesAutoresizingMaskIntoConstraints = NO;
         }
-        DKSButton *addressBtn = [[DKSButton alloc] init];
-        [addressBtn setImage:[UIImage imageNamed:@"icon_xiaosanjiao"] forState:normal];
-        [addressBtn setTitle:@"北京市" forState:normal];
-        addressBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [addressBtn setTitleColor:[UIColor colorWithHexString:@"010101"] forState:normal];
-        [_navTitleView addSubview:addressBtn];
-        addressBtn.frame = CGRectMake(10, 0,60, 30);
-        addressBtn.padding = 4;
-        [addressBtn addTarget:self action:@selector(changeaddressClick) forControlEvents:UIControlEventTouchUpInside];
-        addressBtn.buttonStyle = DKSButtonImageRight;
+        
+        self.addressBtn = [[DKSButton alloc] init];
+        [self.addressBtn setImage:[UIImage imageNamed:@"icon_xiaosanjiao"] forState:normal];
+        NSString *addname = [[NSUserDefaults standardUserDefaults] objectForKey:@"addname"]?:@"未定位";
+        [self.addressBtn setTitle:addname forState:normal];
+        self.addressBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [self.addressBtn setTitleColor:[UIColor colorWithHexString:@"010101"] forState:normal];
+        [_navTitleView addSubview:self.addressBtn];
+        self.addressBtn.frame = CGRectMake(10, 0,60, 30);
+        self.addressBtn.padding = 4;
+        [self.addressBtn addTarget:self action:@selector(changeaddressClick) forControlEvents:UIControlEventTouchUpInside];
+        self.addressBtn.buttonStyle = DKSButtonImageRight;
+        
+        UIView *bgView = [UIView new];
+        bgView.backgroundColor = [UIColor colorWithHexString:@"F3F3F3"];
+        [_navTitleView addSubview:bgView];
+        bgView.frame = CGRectMake(70, 3, WIDTH-90, 30);
+        bgView.layer.masksToBounds = YES;
+        bgView.layer.cornerRadius = 5;
         
         UIImageView *leftImg = [UIImageView new];
-        [_navTitleView addSubview:leftImg];
+        [bgView addSubview:leftImg];
         leftImg.image = [UIImage imageNamed:@"icon_sousuo"];
-        leftImg.frame = CGRectMake(70, 6, 18, 18);
+        leftImg.frame = CGRectMake(10, 6, 18, 18);
         
         UIImageView *rightimg = [[UIImageView alloc] init];
-        [_navTitleView addSubview:rightimg];
+        [bgView addSubview:rightimg];
         rightimg.image = [UIImage imageNamed:@"icon_yuy"];
-        rightimg.frame = CGRectMake(WIDTH-18-40, 6, 12, 18);
+        rightimg.frame = CGRectMake(WIDTH-90-20, 6, 12, 18);
         
-        UITextField *search = [[UITextField alloc] init];
-        search.delegate = self;
-        search.returnKeyType = UIReturnKeySearch;
-        search.backgroundColor = [UIColor colorWithHexString:@"F3F3F3"];
-        [_navTitleView addSubview:search];
-        search.frame = CGRectMake(92, 2, WIDTH-92-60, 30);
+        self.search = [[UITextField alloc] init];
+        self.search.delegate = self;
+        self.search.returnKeyType = UIReturnKeySearch;
+        self.search.backgroundColor = [UIColor colorWithHexString:@"F3F3F3"];
+        [bgView addSubview:self.search];
+        self.search.frame = CGRectMake(32, 2, WIDTH-92-60, 26);
         
     }
     return _navTitleView;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    NSDictionary *data = @{@"search":textField.text};
+    NSNotification * notice = [NSNotification notificationWithName:@"homecaseSearch" object:nil userInfo:data];
+    [[NSNotificationCenter defaultCenter]postNotification:notice];
+    return YES;
 }
 
 -(void)createtapView
@@ -106,7 +130,7 @@
     homecompanyVC *test3 = [homecompanyVC new];
     homestrategyVC *test4 = [homestrategyVC new];
     homeeffectVC *test5 = [homeeffectVC new];
-    
+
     [self addChildViewController:test1];
     [self addChildViewController:test2];
     [self addChildViewController:test3];
@@ -144,7 +168,6 @@
     [self.pageTabView setSelectedTabIndexWithAnimation:self.pageTabView.selectedTabIndex+1];
 }
 
-
 -(void)changeaddressClick
 {
     AddressViewController *vc = [[AddressViewController alloc] init];
@@ -152,6 +175,14 @@
         self.cityId = [modelDic objectForKey:@"cityId"];
         self.countyId = [modelDic objectForKey:@"countyId"];
         self.addName = [modelDic objectForKey:@"name"];
+        self.provinceId = [modelDic objectForKey:@"provinceId"];
+        [self.addressBtn setTitle:self.addName?:@"" forState:normal];
+        
+        
+        
+        NSNotification * notice = [NSNotification notificationWithName:@"homeaddress" object:nil userInfo:modelDic];
+        [[NSNotificationCenter defaultCenter]postNotification:notice];
+        
     };
     [self.navigationController pushViewController:vc animated:YES];
 }

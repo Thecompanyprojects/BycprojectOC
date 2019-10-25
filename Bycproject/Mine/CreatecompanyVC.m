@@ -18,6 +18,7 @@
 @property (nonatomic,strong) NSMutableArray *bannerArray;
 @property (nonatomic,copy) NSString *logoStr;
 @property (nonatomic,strong) UIButton *submitBtn;
+
 @end
 
 static NSString *createidentfi0 = @"createidentfi0";
@@ -36,7 +37,11 @@ static NSString *createidentfi5 = @"createidentfi5";
     self.bannerArray = [NSMutableArray arrayWithObjects:@"", nil];
     
     [self.view addSubview:self.tableView];
+    
+ 
+    
 }
+
 
 -(UITableView *)tableView
 {
@@ -290,6 +295,9 @@ static NSString *createidentfi5 = @"createidentfi5";
     if (indexPath.section==0) {
         if (indexPath.row==2) {
             DetailViewController *vc = [DetailViewController new];
+            vc.refreshBlock = ^(NSDictionary * _Nonnull dic) {
+                
+            };
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

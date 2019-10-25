@@ -37,6 +37,7 @@ extern NSString * const upFeedback;
 extern NSString * const  updateInfoUrl;
 
 extern NSString * const saveHeadquartersUrl;
+
 @end
 
 NS_ASSUME_NONNULL_END

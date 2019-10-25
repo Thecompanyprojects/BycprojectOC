@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self vhl_setNavBarShadowImageHidden:YES];
     self.navigationItem.titleView = self.navTitleView;
     [self creageSdcycle];
 }

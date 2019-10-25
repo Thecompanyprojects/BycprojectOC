@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface homefoodVC : BaseViewController
-
+@property (nonatomic,copy) NSString *provinceId;
+@property (nonatomic,copy) NSString *cityId;
+@property (nonatomic,copy) NSString *countyId;
+@property (nonatomic,copy) NSString *serchContent;
 @end
 
 NS_ASSUME_NONNULL_END

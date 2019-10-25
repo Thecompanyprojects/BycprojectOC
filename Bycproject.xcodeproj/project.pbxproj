@@ -53,6 +53,10 @@
 		53A8019E235ADE9D003726A9 /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8019D235ADE9D003726A9 /* ForgetViewController.m */; };
 		53A801A1235AE893003726A9 /* ForgetnextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A801A0235AE893003726A9 /* ForgetnextViewController.m */; };
 		53A801A5235AF2A0003726A9 /* VHLNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A801A4235AF2A0003726A9 /* VHLNavigation.m */; };
+		53C9F6712363183B00CE51AB /* foodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F6702363183B00CE51AB /* foodModel.m */; };
+		53C9F67423631A1700CE51AB /* companyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F67323631A1700CE51AB /* companyModel.m */; };
+		53C9F67723631BB600CE51AB /* strategyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F67623631BB600CE51AB /* strategyModel.m */; };
+		53C9F67A23631EDA00CE51AB /* effectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F67923631EDA00CE51AB /* effectModel.m */; };
 		53E18D0D2360B78800E39683 /* NSObject+CompressImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D0C2360B78800E39683 /* NSObject+CompressImage.m */; };
 		53E18D1023616AEE00E39683 /* changemineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D0F23616AEE00E39683 /* changemineVC.m */; };
 		53E18D18236170B500E39683 /* GYCursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D13236170B500E39683 /* GYCursorView.m */; };
@@ -210,6 +214,14 @@
 		53A801A0235AE893003726A9 /* ForgetnextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetnextViewController.m; sourceTree = "<group>"; };
 		53A801A3235AF2A0003726A9 /* VHLNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHLNavigation.h; sourceTree = "<group>"; };
 		53A801A4235AF2A0003726A9 /* VHLNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHLNavigation.m; sourceTree = "<group>"; };
+		53C9F66F2363183B00CE51AB /* foodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foodModel.h; sourceTree = "<group>"; };
+		53C9F6702363183B00CE51AB /* foodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foodModel.m; sourceTree = "<group>"; };
+		53C9F67223631A1700CE51AB /* companyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = companyModel.h; sourceTree = "<group>"; };
+		53C9F67323631A1700CE51AB /* companyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = companyModel.m; sourceTree = "<group>"; };
+		53C9F67523631BB600CE51AB /* strategyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = strategyModel.h; sourceTree = "<group>"; };
+		53C9F67623631BB600CE51AB /* strategyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = strategyModel.m; sourceTree = "<group>"; };
+		53C9F67823631EDA00CE51AB /* effectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = effectModel.h; sourceTree = "<group>"; };
+		53C9F67923631EDA00CE51AB /* effectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = effectModel.m; sourceTree = "<group>"; };
 		53E18D0B2360B78800E39683 /* NSObject+CompressImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+CompressImage.h"; sourceTree = "<group>"; };
 		53E18D0C2360B78800E39683 /* NSObject+CompressImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CompressImage.m"; sourceTree = "<group>"; };
 		53E18D0E23616AEE00E39683 /* changemineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = changemineVC.h; sourceTree = "<group>"; };
@@ -365,6 +377,14 @@
 			children = (
 				532AC310235CA1BC0016987A /* caseModel.h */,
 				532AC311235CA1BC0016987A /* caseModel.m */,
+				53C9F66F2363183B00CE51AB /* foodModel.h */,
+				53C9F6702363183B00CE51AB /* foodModel.m */,
+				53C9F67223631A1700CE51AB /* companyModel.h */,
+				53C9F67323631A1700CE51AB /* companyModel.m */,
+				53C9F67523631BB600CE51AB /* strategyModel.h */,
+				53C9F67623631BB600CE51AB /* strategyModel.m */,
+				53C9F67823631EDA00CE51AB /* effectModel.h */,
+				53C9F67923631EDA00CE51AB /* effectModel.m */,
 				532AC332236077AB0016987A /* ZCHCitiesModel.h */,
 				532AC334236077AB0016987A /* ZCHCitiesModel.m */,
 				532AC335236077AC0016987A /* ZCHCityModel.h */,
@@ -990,6 +1010,7 @@
 				53E18D1A236170B500E39683 /* GYSelectorCell.m in Sources */,
 				53A801852359C987003726A9 /* createcompanyCell2.m in Sources */,
 				532AC31E235E02BE0016987A /* AddressViewController.m in Sources */,
+				53C9F67A23631EDA00CE51AB /* effectModel.m in Sources */,
 				53A8017C2359AA9D003726A9 /* ZZQResourceSheetView.m in Sources */,
 				532AC33A236078070016987A /* WMSearchBar.m in Sources */,
 				53FDD72C2357619F000ADA1F /* mineinfoView.m in Sources */,
@@ -1065,11 +1086,14 @@
 				53A801822359ADA2003726A9 /* createcompanyCell1.m in Sources */,
 				53ED93CD2355C4F4008513DC /* main.m in Sources */,
 				53FDD6FC2357145E000ADA1F /* XXPageTabItemLable.m in Sources */,
+				53C9F67723631BB600CE51AB /* strategyModel.m in Sources */,
+				53C9F67423631A1700CE51AB /* companyModel.m in Sources */,
 				532AC308235B351E0016987A /* CustomActivity.m in Sources */,
 				53E18D0D2360B78800E39683 /* NSObject+CompressImage.m in Sources */,
 				53FDD709235722BB000ADA1F /* homefoodVC.m in Sources */,
 				53FDD72F235852A0000ADA1F /* CreatecompanyVC.m in Sources */,
 				53E18D4523621EC400E39683 /* JDCategoryRightCollectionView.m in Sources */,
+				53C9F6712363183B00CE51AB /* foodModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

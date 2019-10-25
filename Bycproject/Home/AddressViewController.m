@@ -380,7 +380,7 @@ JFSearchViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate> {
         }
     }
 
-    NSDictionary *newDic = @{@"name":model.name?:@"",@"cityId":cityIds?:@"0",@"countyId":countyIds?:@"0"};
+    NSDictionary *newDic = @{@"name":model.name?:@"",@"cityId":cityIds?:@"0",@"countyId":countyIds?:@"0",@"provinceId":model.provinceId?:@""};
     
     if (self.refreshBlock) {
         self.refreshBlock(newDic);
@@ -570,7 +570,7 @@ JFSearchViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate> {
     cityModel = model;
     countyModel = nil;
     
-    NSDictionary *newDic = @{@"name":model.name?:@"",@"cityId":model.cityId?:@"0",@"countyId":model.countyId?:@"0"};
+    NSDictionary *newDic = @{@"name":model.name?:@"",@"cityId":model.cityId?:@"0",@"countyId":model.countyId?:@"0",@"provinceId":model.provinceId?:@"0"};
     if (self.refreshBlock) {
         self.refreshBlock(newDic);
     }
@@ -706,12 +706,12 @@ JFSearchViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate> {
         countyModel = nil;
     }
     
-    NSDictionary *newDic = @{@"name":model.name?:@"",@"cityId":model.cityId?:@"0",@"countyId":model.countyId?:@"0"};
+    NSDictionary *newDic = @{@"name":model.name?:@"",@"cityId":model.cityId?:@"0",@"countyId":model.countyId?:@"0",@"provinceId":model.provinceId?:@""};
     
     if (self.refreshBlock) {
         self.refreshBlock(newDic);
     }
-     
+    
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.beSavedHistoryArr];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"HistoryCity"];
     [[NSUserDefaults standardUserDefaults] synchronize];

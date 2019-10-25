@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self vhl_setNavBarShadowImageHidden:YES];
     self.imageArray = [NSMutableArray arrayWithObjects:@"icon_shuom",@"icon_shoucang",@"icon_xiaoxi-1",@"icon_shezhi",@"icon_tuijian-1",@"icon_yijian",@"icon_kefu",@"icon_xiaoxi", nil];
     self.titleArray = [NSMutableArray arrayWithObjects:@"使用说明",@"我的收藏",@"系统消息",@"设置",@"推荐给朋友",@"意见反馈",@"在线客服",@"聊天消息", nil];
     [self creageUI];

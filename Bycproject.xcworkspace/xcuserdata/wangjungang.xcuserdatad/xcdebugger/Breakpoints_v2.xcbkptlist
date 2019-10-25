@@ -31,14 +31,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "3DDCF19D-7FFF-4EDD-A2B1-3B14F7099E47 - 8b9a40553b56b2f0"
+                  uuid = "3DDCF19D-7FFF-4EDD-A2B1-3B14F7099E47 - 268cecef89e87df8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[changemineVC submitbtnclick]"
                   moduleName = "&#x5e2e;&#x4e00;&#x7a0b;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangjungang/Desktop/Bycproject/Bycproject/Mine/changemineVC.m"
+                  urlString = "file:///Users/wangjungang/Desktop/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%A4%B93/BycprojectOC/Bycproject/Mine/changemineVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "283"
@@ -46,14 +46,14 @@
                   offsetFromSymbolStart = "1572">
                </Location>
                <Location
-                  uuid = "3DDCF19D-7FFF-4EDD-A2B1-3B14F7099E47 - e7d2484a9a7eee69"
+                  uuid = "3DDCF19D-7FFF-4EDD-A2B1-3B14F7099E47 - 4ac4e4f028c02161"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__30-[changemineVC submitbtnclick]_block_invoke"
                   moduleName = "&#x5e2e;&#x4e00;&#x7a0b;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangjungang/Desktop/Bycproject/Bycproject/Mine/changemineVC.m"
+                  urlString = "file:///Users/wangjungang/Desktop/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%A4%B93/BycprojectOC/Bycproject/Mine/changemineVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "283"

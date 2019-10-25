@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JDCategoryRightCollectionCell : UICollectionViewCell
-@property (nonatomic, strong) NSString *sectionTitle;
+@property (nonatomic, strong) NSMutableArray *sectionArray;
 @property (nonatomic, assign) NSInteger count;
 
 @end

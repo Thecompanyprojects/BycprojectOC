@@ -28,6 +28,13 @@
     return self;
 }
 
+- (void)setModel:(foodModel *)model
+{
+    [self.bgImg sd_setImageWithURL:[NSURL URLWithString:model.demoLogo] placeholderImage:[UIImage imageNamed:@""]];
+    self.titleLab.text = model.title?:@"";
+    self.priceLab.text = model.price?:@"";
+}
+
 -(void)setuplayout
 {
     __weak typeof (self) weakSelf = self;
@@ -56,7 +63,6 @@
     if(!_bgImg)
     {
         _bgImg = [[UIImageView alloc] init];
-        _bgImg.backgroundColor = [UIColor orangeColor];
         _bgImg.contentMode = UIViewContentModeScaleAspectFill;
         _bgImg.clipsToBounds = YES;
         _bgImg.layer.masksToBounds = YES;
@@ -73,7 +79,7 @@
         _titleLab.numberOfLines = 2;
         _titleLab.textColor = [UIColor colorWithHexString:@"000000"];
         _titleLab.font = [UIFont systemFontOfSize:12];
-        _titleLab.text = @"这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品这个是商品";
+
     }
     return _titleLab;
 }
@@ -86,7 +92,7 @@
         _priceLab = [[UILabel alloc] init];
         _priceLab.textColor = [UIColor colorWithHexString:@"757575"];
         _priceLab.font = [UIFont systemFontOfSize:10];
-        _priceLab.text = @"价格：100$";
+
     }
     return _priceLab;
 }

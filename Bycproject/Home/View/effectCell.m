@@ -11,6 +11,7 @@
 @interface effectCell()
 @property (nonatomic,strong) UIImageView *bgImg;
 @property (nonatomic,strong) UILabel *messageLab;
+@property (nonatomic,strong) UILabel *titleLab;
 @end
 
 @implementation effectCell
@@ -20,10 +21,18 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self.contentView addSubview:self.bgImg];
+        [self.contentView addSubview:self.titleLab];
         [self.contentView addSubview:self.messageLab];
         [self setuplayout];
     }
     return self;
+}
+
+- (void)setModel:(effectModel *)model
+{
+    [self.bgImg sd_setImageWithURL:[NSURL URLWithString:model.demoLogo] placeholderImage:[UIImage imageNamed:@""]];
+    self.titleLab.text = model.title?:@"";
+    self.messageLab.text = model.subTitle?:@"";
 }
 
 -(void)setuplayout
@@ -35,10 +44,15 @@
         make.left.equalTo(weakSelf).with.offset(11);
         make.height.mas_offset(170);
     }];
-    [weakSelf.messageLab mas_makeConstraints:^(MASConstraintMaker *make) {
+    [weakSelf.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.bgImg);
         make.right.equalTo(weakSelf.bgImg);
         make.top.equalTo(weakSelf.bgImg.mas_bottom).with.offset(20);
+    }];
+    [weakSelf.messageLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bgImg);
+        make.right.equalTo(weakSelf.bgImg);
+        make.top.equalTo(weakSelf.titleLab.mas_bottom).with.offset(6);
     }];
 }
 
@@ -49,7 +63,6 @@
     if(!_bgImg)
     {
         _bgImg = [UIImageView new];
-        _bgImg.backgroundColor = [UIColor orangeColor];
         _bgImg.contentMode = UIViewContentModeScaleAspectFill;
         _bgImg.clipsToBounds = YES;
         _bgImg.layer.masksToBounds = YES;
@@ -64,14 +77,21 @@
     {
         _messageLab = [UILabel new];
         _messageLab.textColor = [UIColor colorWithHexString:@"000000"];
-        _messageLab.numberOfLines = 2;
-        _messageLab.text = @"这个地方是介绍这个地方是介绍这个地方是介绍这个地方是介绍";
         _messageLab.font = [UIFont systemFontOfSize:12];
     }
     return _messageLab;
 }
 
-
+-(UILabel *)titleLab
+{
+    if(!_titleLab)
+    {
+        _titleLab = [UILabel new];
+        _titleLab.textColor = [UIColor colorWithHexString:@"000000"];
+        _titleLab.font = [UIFont systemFontOfSize:12];
+    }
+    return _titleLab;
+}
 
 
 @end

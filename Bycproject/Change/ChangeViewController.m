@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self vhl_setNavBarShadowImageHidden:YES];
     // Do any additional setup after loading the view.
     [self createUI];
     

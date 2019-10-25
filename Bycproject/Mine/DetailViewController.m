@@ -36,7 +36,20 @@
     [super viewDidLoad];
     self.title = @"店铺类别";
     [self setupSubViews];
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(notice:) name:@"chooseDetal" object:nil];
 }
+
+-(void)notice:(NSNotification *)sender{
+    NSLog(@"%@",sender);
+    NSDictionary *dic = sender.userInfo;
+    if (self.refreshBlock) {
+        self.refreshBlock(dic);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 /**
  *思路1
