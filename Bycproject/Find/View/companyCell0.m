@@ -7,7 +7,7 @@
 //
 
 #import "companyCell0.h"
-
+#import "headImgModel.h"
 @interface companyCell0()<SDCycleScrollViewDelegate>
 @property (nonatomic,strong) SDCycleScrollView *scrollView;
 @end
@@ -20,8 +20,26 @@
     if(self)
     {
         [self.contentView addSubview:self.scrollView];
+        [self setscrolldata];
     }
     return self;
+}
+
+-(void)setscrolldata
+{
+
+    
+    NSMutableArray *array = [NSMutableArray new];
+    for (int i = 0; i<self.headImgs.count; i++) {
+        headImgModel *model = [self.headImgs objectAtIndex:i];
+        [array addObject:model.picUrl];
+    }
+    
+    //采用网络图片
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.scrollView.imageURLStringsGroup = array;
+    });
+    
 }
 
 -(void)setuplayout
@@ -43,7 +61,6 @@
         _scrollView.delegate = self;
         _scrollView.layer.masksToBounds = YES;
         _scrollView.layer.cornerRadius = 9;
-        _scrollView.backgroundColor = [UIColor orangeColor];
     }
     return _scrollView;
 }

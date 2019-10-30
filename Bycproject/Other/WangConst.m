@@ -47,7 +47,17 @@ NSString * const upFeedback = @"api/feedback/upFeedback.do";
 //创建公司
 NSString * const saveHeadquartersUrl = @"api/company/saveHeadquarters.do";
 
+//店铺详情
+NSString * const getNoVipYellowPage = @"api/company/getNoVipYellowPage.do";
 
+//修改公司
+NSString * const saveAreaUrl = @"api/area/saveArea.do";
+
+//查询我的公司列表
+NSString * const findCompanyListUrl = @"api/company/findCompanyList.do";
+
+//查询所有商家类别
+NSString * const tplistUrl = @"api/byc/company/tplist.do";
 @implementation WangConst
 
 @end

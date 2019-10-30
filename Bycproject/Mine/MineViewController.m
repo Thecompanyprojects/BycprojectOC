@@ -16,13 +16,16 @@
 #import "SetViewController.h"
 #import "mineinfoVC.h"
 #import "AgencyModel.h"
-
+#import "companyViewController.h"
 
 @interface MineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *imageArray;
 @property (nonatomic,strong) NSMutableArray *titleArray;
 @property (nonatomic,strong) AgencyModel *model;
+@property (nonatomic,assign) BOOL isCompany;
+@property (nonatomic,copy) NSString *companyId;
+@property (nonatomic,copy) NSString *companyName;
 @end
 
 @implementation MineViewController
@@ -34,6 +37,7 @@
     self.titleArray = [NSMutableArray arrayWithObjects:@"使用说明",@"我的收藏",@"系统消息",@"设置",@"推荐给朋友",@"意见反馈",@"在线客服",@"聊天消息", nil];
     [self creageUI];
     [self getdatafromweb];
+    [self getmineCompanyinfo];
 }
 
 -(void)creageUI
@@ -72,6 +76,27 @@
     }];
 }
 
+
+-(void)getmineCompanyinfo
+{
+    NSString *url = [BaseURL stringByAppendingFormat:@"%@", findCompanyListUrl];
+    NSString *agencyId = [[NSUserDefaults standardUserDefaults] objectForKey:@"agencyId"];
+    NSDictionary *para = @{@"agencysId":agencyId};
+    
+    [NetManager afPostRequest:url parms:para finished:^(id responseObj) {
+        if ([[responseObj objectForKey:@"code"] intValue]==1000) {
+            self.isCompany = YES;
+            self.companyId = [responseObj objectForKey:@"data"][@"companyId"]?:@"";
+            self.companyName = [responseObj objectForKey:@"data"][@"companyName"]?:@"";
+            [self.collectionView reloadData];
+        }
+        if ([[responseObj objectForKey:@"code"] intValue]==1002) {
+            self.isCompany = NO;
+        }
+    } failed:^(NSString *errorMsg) {
+        
+    }];
+}
 
 #pragma mark collectionView代理方法
 //返回section个数
@@ -165,7 +190,14 @@
     [bgImg addSubview:companyLab];
     companyLab.textColor = [UIColor colorWithHexString:@"#2B2B2B"];
     companyLab.font = [UIFont systemFontOfSize:17];
-    companyLab.text = @"创建我的公司";
+    
+    if (self.isCompany) {
+        companyLab.text = self.companyName;
+    }
+    else
+    {
+        companyLab.text = @"创建我的公司";
+    }
     [companyLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImg).with.offset(23);
         make.top.equalTo(bgImg).with.offset(10);
@@ -176,7 +208,10 @@
     [bgImg addSubview:contentLab];
     contentLab.textColor = [UIColor colorWithHexString:@"#7c7c7c"];
     contentLab.font = [UIFont systemFontOfSize:13];
-    contentLab.text = @"请创建您的公司";
+//
+    if (!self.isCompany) {
+        contentLab.text = @"请创建您的公司";
+    }
     [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bgImg).with.offset(23);
         make.top.equalTo(companyLab.mas_bottom).with.offset(7);
@@ -237,8 +272,17 @@
 
 -(void)tapAction:(id)tap
 {
-    CreatecompanyVC *vc = [CreatecompanyVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.isCompany) {
+        companyViewController *vc = [companyViewController new];
+        vc.companyId = self.companyId;
+        vc.isChange = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        CreatecompanyVC *vc = [CreatecompanyVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)infoClick

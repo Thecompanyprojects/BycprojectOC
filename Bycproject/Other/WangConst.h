@@ -38,6 +38,13 @@ extern NSString * const  updateInfoUrl;
 
 extern NSString * const saveHeadquartersUrl;
 
+extern NSString * const getNoVipYellowPage;
+
+extern NSString * const saveAreaUrl;
+
+extern NSString * const findCompanyListUrl;
+
+extern NSString * const tplistUrl;
 @end
 
 NS_ASSUME_NONNULL_END

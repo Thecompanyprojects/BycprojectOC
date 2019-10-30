@@ -8,6 +8,10 @@
 
 #import "createcompanyCell3.h"
 
+@interface createcompanyCell3()<UITextFieldDelegate>
+
+@end
+
 @implementation createcompanyCell3
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -46,7 +50,10 @@
     if(!_leftImg)
     {
         _leftImg = [[UIImageView alloc] init];
-        _leftImg.image = [UIImage imageNamed:@"jiajia1"];
+//        _leftImg.image = [UIImage imageNamed:@"jiajia1"];
+        _leftImg.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
+        [_leftImg addGestureRecognizer:tapGesture];
     }
     return _leftImg;
 }
@@ -56,11 +63,25 @@
     if(!_messageText)
     {
         _messageText = [[UITextField alloc] init];
-        
+        _messageText.delegate = self;
     }
     return _messageText;
 }
 
+-(void)clickImage
+{
+    [self.delegate myTabVClick:self];
+}
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.delegate myTabwithstr:textField.text?:@"" with:self];
+}
+
+- (void)setModel:(companyListModel *)model
+{
+    [self.leftImg sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:[UIImage imageNamed:@"jiajia1"]];
+    self.messageText.text = model.picHref?:@"";
+}
 
 @end

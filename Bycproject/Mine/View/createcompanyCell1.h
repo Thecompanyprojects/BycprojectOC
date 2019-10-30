@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface createcompanyCell1 : UITableViewCell
 @property (nonatomic,strong) UILabel *titleLab;
 @property (nonatomic,strong) UITextField *contentText;
+@property (nonatomic,strong) UILabel *messageLab;
 @end
 
 NS_ASSUME_NONNULL_END

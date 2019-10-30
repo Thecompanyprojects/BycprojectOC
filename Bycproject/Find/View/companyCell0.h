@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface companyCell0 : UITableViewCell
-
+@property (nonatomic,strong) NSMutableArray *headImgs;
+-(void)setscrolldata;
 @end
 
 NS_ASSUME_NONNULL_END

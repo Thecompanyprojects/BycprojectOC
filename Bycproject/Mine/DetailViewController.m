@@ -31,7 +31,6 @@
 
 @implementation DetailViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"店铺类别";

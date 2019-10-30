@@ -11,10 +11,15 @@
 #import "companyCell1.h"
 #import "companyCell2.h"
 #import "companyCell4.h"
-
+#import "companyinfoModel.h"
+#import "headImgModel.h"
+#import "CreatecompanyVC.h"
 
 @interface companyViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) companyinfoModel *model;
+@property (nonatomic,strong) NSMutableArray *headImgs;
+
 @end
 
 static NSString *companyident0 = @"companyident0";
@@ -30,6 +35,43 @@ static NSString *companyident4 = @"companyident4";
     self.title = @"黄页";
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
+    [self getdatafromWeb];
+    if (self.isChange) {
+        UIButton *submitBtn = [[UIButton alloc] initWithFrame:CGRectMake(16, 36, 50, 40)];
+        [submitBtn setTitle:@"修改" forState:normal];
+        submitBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [submitBtn setTitleColor:[UIColor blackColor] forState:normal];
+        UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:submitBtn];
+        if (@available(iOS 11.0, *)) {
+            rightBarButtonItem.customView.frame = CGRectMake(0, 0, 30, 44);
+        }
+        [submitBtn addTarget:self action:@selector(changesubmitBtnclick) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    }
+}
+
+-(void)getdatafromWeb
+{
+    NSString *url = [BaseURL stringByAppendingFormat:@"%@", getNoVipYellowPage];
+    NSString *companyId = self.companyId?:@"";
+    NSString *agencyId = [[NSUserDefaults standardUserDefaults] objectForKey:@"agencyId"];
+//    agencyId = @"99789";
+    NSDictionary *params = @{@"companyId":companyId,@"agencyId":agencyId};
+    
+    [NetManager afPostRequest:url parms:params finished:^(id responseObj) {
+        if ([[responseObj objectForKey:@"code"] intValue]==1000) {
+            NSDictionary *data = [responseObj objectForKey:@"data"];
+            NSDictionary *company = [data objectForKey:@"company"];
+            self.model = [companyinfoModel yy_modelWithDictionary:company];
+            
+            NSArray *headArray = [NSArray yy_modelArrayWithClass:[headImgModel class] json:responseObj[@"data"][@"headImgs"]];
+            self.headImgs = [NSMutableArray array];
+            [self.headImgs addObjectsFromArray:headArray];
+            [self.tableView reloadData];
+        }
+    } failed:^(NSString *errorMsg) {
+        
+    }];
 }
 
 -(UITableView *)tableView
@@ -71,14 +113,17 @@ static NSString *companyident4 = @"companyident4";
             companyCell0 *cell = [tableView dequeueReusableCellWithIdentifier:companyident0];
             cell = [[companyCell0 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyident0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            cell.headImgs = [NSMutableArray array];
+            cell.headImgs = self.headImgs.mutableCopy;
+            [cell setscrolldata];
             return cell;
         }
         if (indexPath.row==1) {
             companyCell1 *cell = [tableView dequeueReusableCellWithIdentifier:companyident1];
             cell = [[companyCell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyident1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            cell.nameLab.text = self.model.companyName?:@"";
+            [cell.leftImg sd_setImageWithURL:[NSURL URLWithString:self.model.companyLogo] placeholderImage:[UIImage imageNamed:@""]];
             return cell;
         }
         if (indexPath.row==2) {
@@ -87,15 +132,15 @@ static NSString *companyident4 = @"companyident4";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.titleLab.text = @"服务范围";
             cell.leftImg.image = [UIImage imageNamed:@"fuwu2"];
-            cell.contentLab.text = @"商业住宅 别墅 酒店 KTV会所等高中抵挡装修 免费设计商业住宅 别墅 酒店 KTV会所等高中抵挡装修 免费设计商业住宅 别墅 酒店 KTV会所等高中抵挡装修 免费设计";
+            cell.contentLab.text = self.model.serviceScope?:@"";
             return cell;
          }
         if (indexPath.row==3) {
             companyCell4 *cell = [tableView dequeueReusableCellWithIdentifier:companyident3];
             cell = [[companyCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyident3];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.leftImg.image = [UIImage imageNamed:@"fuwu2"];
-            cell.titleLab.text = @"companyident3";
+            cell.leftImg.image = [UIImage imageNamed:@"dizhi"];
+            cell.titleLab.text = self.model.companyAddress?:@"";
             return cell;
         }
         if (indexPath.row==4) {
@@ -104,6 +149,7 @@ static NSString *companyident4 = @"companyident4";
              cell.selectionStyle = UITableViewCellSelectionStyleNone;
              cell.leftImg.image = [UIImage imageNamed:@"tel"];
              cell.titleLab.text = @"155109228737";
+             cell.titleLab.text = self.model.companyLandline?:@"";
              return cell;
         }
     }
@@ -113,7 +159,7 @@ static NSString *companyident4 = @"companyident4";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLab.text = @"公司简介";
         cell.leftImg.image = [UIImage imageNamed:@"gongsiguanli"];
-        cell.contentLab.text = @"商业住宅 别墅 酒店 KTV会所等高中抵挡装修 免费设计商业住宅 别墅 酒店 KTV会所等高中抵挡装修 免费设计商业住宅 别墅 酒店 KTV会所等高中抵挡装修 免费设计";
+        cell.contentLab.text = self.model.companyIntroduction?:@"";
         return cell;
     }
     return nil;
@@ -170,7 +216,8 @@ static NSString *companyident4 = @"companyident4";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0&&indexPath.row==4) {
-        NSMutableString  *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",@"15510922836"];
+        
+        NSMutableString  *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",@""];
         if (@available(iOS 10.0, *)) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
         } else {
@@ -178,6 +225,14 @@ static NSString *companyident4 = @"companyident4";
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
     }
+}
+
+-(void)changesubmitBtnclick
+{
+    CreatecompanyVC *vc = [CreatecompanyVC new];
+    vc.isChange = YES;
+    vc.companyId = self.companyId.copy;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -17,6 +17,7 @@
     {
         [self.contentView addSubview:self.titleLab];
         [self.contentView addSubview:self.contentText];
+        [self.contentView addSubview:self.messageLab];
         [self setuplayout];
     }
     return self;
@@ -32,6 +33,12 @@
         make.width.mas_offset(72);
     }];
     [weakSelf.contentText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf).with.offset(-14);
+        make.centerY.equalTo(weakSelf);
+        make.left.equalTo(weakSelf.titleLab.mas_right).with.offset(6);
+        make.height.mas_offset(27);
+    }];
+    [weakSelf.messageLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf).with.offset(-14);
         make.centerY.equalTo(weakSelf);
         make.left.equalTo(weakSelf.titleLab.mas_right).with.offset(6);
@@ -61,6 +68,17 @@
     }
     return _contentText;
 }
+
+-(UILabel *)messageLab
+{
+    if(!_messageLab)
+    {
+        _messageLab = [[UILabel alloc] init];
+        _messageLab.hidden = YES;
+    }
+    return _messageLab;
+}
+
 
 
 

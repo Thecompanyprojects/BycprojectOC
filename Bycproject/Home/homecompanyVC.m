@@ -143,8 +143,10 @@ static NSString *homecompanyidendfity = @"homecompanyidendfity";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    companyViewController *vc = [companyViewController new];
-    [self.navigationController pushViewController:vc animated:true];
+//    companyViewController *vc = [companyViewController new];
+//    companyModel *model = self.dataSource[indexPath.row];
+//    vc.companyId = [NSString stringWithFormat:@"%ld",(long)model.customId];
+//    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end
