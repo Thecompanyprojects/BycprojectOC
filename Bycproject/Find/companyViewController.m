@@ -15,11 +15,11 @@
 #import "headImgModel.h"
 #import "CreatecompanyVC.h"
 
+
 @interface companyViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) companyinfoModel *model;
 @property (nonatomic,strong) NSMutableArray *headImgs;
-
 @end
 
 static NSString *companyident0 = @"companyident0";
@@ -148,8 +148,17 @@ static NSString *companyident4 = @"companyident4";
              cell = [[companyCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyident3];
              cell.selectionStyle = UITableViewCellSelectionStyleNone;
              cell.leftImg.image = [UIImage imageNamed:@"tel"];
-             cell.titleLab.text = @"155109228737";
-             cell.titleLab.text = self.model.companyLandline?:@"";
+             if (self.model.companyLandline.length!=0) {
+                 cell.titleLab.text = self.model.companyLandline?:@"";
+             }
+             else if (self.model.companyPhone.length!=0)
+             {
+                 cell.titleLab.text = self.model.companyPhone?:@"";
+             }
+             else
+             {
+                 cell.titleLab.text = @"暂无联系方式";
+             }
              return cell;
         }
     }
@@ -217,13 +226,30 @@ static NSString *companyident4 = @"companyident4";
 {
     if (indexPath.section==0&&indexPath.row==4) {
         
-        NSMutableString  *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",@""];
-        if (@available(iOS 10.0, *)) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
-        } else {
-            // Fallback on earlier versions
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        if (self.model.companyLandline.length!=0) {
+            NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.companyLandline];
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            }
         }
+        else if (self.model.companyPhone.length!=0)
+        {
+            NSMutableString  *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.companyPhone];
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            }
+        }
+        else
+        {
+            [MBProgressHUD showMessage:@"暂无联系方式"];
+        }
+
     }
 }
 
@@ -232,7 +258,19 @@ static NSString *companyident4 = @"companyident4";
     CreatecompanyVC *vc = [CreatecompanyVC new];
     vc.isChange = YES;
     vc.companyId = self.companyId.copy;
+    vc.successBlock = ^{
+        [self getdatafromWeb];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void)didMoveToParentViewController:(UIViewController*)parent{
+    [super didMoveToParentViewController:parent];
+    if(!parent){
+        NSLog(@"页面pop成功了");
+        
+    }
+}
+
 
 @end

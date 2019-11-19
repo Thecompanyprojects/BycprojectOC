@@ -36,5 +36,6 @@
 #import "UIColor+Extension.h"
 #import "VHLNavigation.h"
 #import "UIButton+Extension.h"
+#import <LDImagePicker/LDImagePicker.h>
 
 #endif /* PrefixHeader_pch */

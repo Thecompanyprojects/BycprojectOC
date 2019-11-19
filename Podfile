@@ -21,6 +21,8 @@ pod 'JKCountDownButton'
 pod 'MBProgressHUD'
 pod 'YTKNetwork'
 pod 'GTMBase64'
+pod 'LDImagePicker'
+
   # Pods for Bycproject
 
   target 'BycprojectTests' do

@@ -16,7 +16,7 @@
 #import "companyManager.h"
 #import "createshowView.h"
 
-@interface CreatecompanyVC ()<UITableViewDataSource,UITableViewDelegate,myTabVdelegate,UITextFieldDelegate,UITextViewDelegate>
+@interface CreatecompanyVC ()<UITableViewDataSource,UITableViewDelegate,myTabVdelegate,UITextFieldDelegate,UITextViewDelegate,LDImagePickerDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *bannerArray;
 @property (nonatomic,strong) NSMutableArray *bottomArray;
@@ -40,6 +40,8 @@
 @property (nonatomic,copy) NSString *companyPhone;//电话
 @property (nonatomic,copy) NSString *serviceScope;//服务范围
 
+@property (nonatomic,assign) NSInteger indexInt;
+@property (nonatomic,assign) BOOL isTop;
 @end
 
 static NSString *createidentfi0 = @"createidentfi0";
@@ -67,10 +69,7 @@ static NSString *createidentfi5 = @"createidentfi5";
         self.bannerArray = [NSMutableArray array];
         self.bottomArray = [NSMutableArray array];
     }
-
 }
-
-
 
 /// 获取公司信息
 -(void)getdataFromweb
@@ -98,6 +97,7 @@ static NSString *createidentfi5 = @"createidentfi5";
             self.serviceScope = [company objectForKey:@"serviceScope"]?:@"";
             self.companyPhone = [company objectForKey:@"companyPhone"]?:@"";
             self.companyType = [company objectForKey:@"companyType"]?:@"";
+            self.companyIntroduction = [company objectForKey:@"companyIntroduction"]?:@"";
             self.companyTypeStr = [companyManager getTypeWithTitle:self.companyType];
             
             [self.tableView reloadData];
@@ -410,16 +410,6 @@ static NSString *createidentfi5 = @"createidentfi5";
 {
     if (indexPath.section==0) {
         if (indexPath.row==2) {
-//            DetailViewController *vc = [DetailViewController new];
-//            vc.refreshBlock = ^(NSDictionary * _Nonnull dic) {
-//                self.companyType = [NSString new];
-//                self.companyTypeStr = [NSString new];
-//                self.companyType = [dic objectForKey:@"idstr"]?:@"";
-//                self.companyTypeStr = [dic objectForKey:@"titleStr"]?:@"";
-//                self.tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT-88);
-//                [self.tableView reloadData];
-//            };
-//            [self.navigationController pushViewController:vc animated:YES];
             createshowView *show = [[createshowView alloc] init];
             show.sureClick = ^(NSDictionary * _Nonnull dic) {
                 self.companyType = [dic objectForKey:@"typeNo"]?:@"";
@@ -538,6 +528,9 @@ static NSString *createidentfi5 = @"createidentfi5";
         NSString *msg = [responseObj objectForKey:@"msg"];
         [MBProgressHUD showMessage:msg];
         if ([[responseObj objectForKey:@"code"] intValue]==1000) {
+            if (self.successBlock) {
+                self.successBlock();
+            }
             [self.navigationController popViewControllerAnimated:YES];
         }
     } failed:^(NSString *errorMsg) {
@@ -547,10 +540,11 @@ static NSString *createidentfi5 = @"createidentfi5";
 
 -(void)changesubmitBtnclick
 {
-    if (self.imgList.length > 5) {
-        NSRange deleteRange = {([self.imgList length] - 2), 1};
-        [self.imgList deleteCharactersInRange:deleteRange];
-    }
+//    if (self.imgList.length > 5) {
+//        NSRange deleteRange = {([self.imgList length] - 2), 1};
+//        [self.imgList deleteCharactersInRange:deleteRange];
+//    }
+    
     NSString *url = [BaseURL stringByAppendingFormat:@"%@", saveAreaUrl];
     NSInteger companyId = [self.companyId intValue];
     NSString *companyName = self.companyName?:@"";
@@ -570,23 +564,7 @@ static NSString *createidentfi5 = @"createidentfi5";
     NSString *longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"lng"];
 
     NSMutableArray *array = [NSMutableArray new];
-    for (int i = 0; i<self.bannerArray.count; i++) {
-        companyListModel *model = [self.bannerArray objectAtIndex:i];
-        model.type = @"8";
-        model.sort = @"0";
-        model.companyId = self.companyId;
-        model.picTitle = @"";
-        model.picId = @"";
-
-    }
-    for (int i = 0; i<self.bottomArray.count; i++) {
-        companyListModel *model = [self.bottomArray objectAtIndex:i];
-        model.type = @"22";
-        model.sort = @"0";
-        model.companyId = self.companyId;
-        model.picTitle = @"";
-        model.picId = @"";
-    }
+    
     [array addObjectsFromArray:self.bottomArray];
     [array addObjectsFromArray:self.bannerArray];
     
@@ -597,7 +575,6 @@ static NSString *createidentfi5 = @"createidentfi5";
         companyListModel *model = array[i];
         [multiDict setObject:self.companyId forKey:@"companyId"];
         [multiDict setObject:model.picUrl?:@"" forKey:@"picUrl"];
-        [multiDict setObject:model.picId?:@"0" forKey:@"picId"];
         [multiDict setObject:[NSString stringWithFormat:@"%d", i + 1] forKey:@"sort"];
         [multiDict setObject:model.type forKey:@"type"];
         [multiDict setObject:model.picTitle?:@"" forKey:@"picTitle"];//文字
@@ -606,21 +583,24 @@ static NSString *createidentfi5 = @"createidentfi5";
         NSLog(@"%@ ===== %@",model.picTitle, model.picHref);
         NSString *dictStr = [model yy_modelToJSONString];
         [self.imgList appendString:dictStr];
-//        [self.imgList appendString:@","];
+        [self.imgList appendString:@","];
     }
     [self.imgList appendString:@"]"];
+        
     
     NSInteger lngint = [longitude integerValue];
     NSInteger latint = [latitude intValue];
     NSInteger typeint = [companyType intValue];
     
-    NSDictionary *params = @{@"companyId":@(companyId),@"companyName":companyName,@"companyLogo":companyLogo,@"companyProvince":@(companyProvince),@"companyCity":@(companyCity),@"companyCounty":@(companyCounty),@"companyLandline":companyLandline,@"companyPhone":companyPhone,@"companyIntroduction":companyIntroduction,@"companyWx":companyWx,@"companyType":@(typeint),@"serviceScope":serviceScope,@"latitude":@(latint),@"longitude":@(lngint),@"imgList":self.imgList?:@"",@"seeFlag":@(0),@"areaList":@"[]"};
+    NSDictionary *params = @{@"companyId":@(companyId),@"companyName":companyName,@"companyLogo":companyLogo,@"companyProvince":@(companyProvince),@"companyCity":@(companyCity),@"companyCounty":@(companyCounty),@"companyLandline":companyLandline,@"companyPhone":companyPhone,@"companyIntroduction":companyIntroduction,@"companyWx":companyWx,@"companyType":@(typeint),@"serviceScope":serviceScope,@"latitude":@(latint),@"longitude":@(lngint),@"imgList":self.imgList?:@"",@"seeFlag":@(0),@"areaList":@"[]",@"dealImgs":@(1),@"companyAddress":self.companyAddress?:@""};
 
-    
     [NetManager afPostRequest:url parms:params finished:^(id responseObj) {
         NSString *msg = [responseObj objectForKey:@"msg"];
         [MBProgressHUD showMessage:msg];
         if ([[responseObj objectForKey:@"code"] intValue]==1000) {
+            if (self.successBlock) {
+                self.successBlock();
+            }
             [self.navigationController popViewControllerAnimated:YES];
         }
     } failed:^(NSString *errorMsg) {
@@ -630,30 +610,46 @@ static NSString *createidentfi5 = @"createidentfi5";
 
 -(void)myTabVClick:(UITableViewCell *)cell
 {
-    NSIndexPath *index = [self.tableView indexPathForCell:cell];
     
-    [ZZQAvatarPicker startSelected:^(UIImage * _Nonnull image) {
-        if (image) {
-            
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [UploadImageApi requestimagedata:image success:^(NSString * _Nonnull response) {
-                [MBProgressHUD hideHUDForView:self.view];
-                if (index.section==1) {
-                    companyListModel *model = [self.bannerArray objectAtIndex:index.row];
-                    model.picUrl = response.copy?:@"";
-                    
-                    [self.tableView reloadData];
-                }
-                if (index.section==2) {
-                    companyListModel *model = [self.bottomArray objectAtIndex:index.row];
-                    model.picUrl = response.copy?:@"";
-                    
-                    [self.tableView reloadData];
-                }
-            } failure:^(NSError * _Nonnull error) {
-                [MBProgressHUD hideHUDForView:self.view];
-            }];
+    NSIndexPath *index = [self.tableView indexPathForCell:cell];
+    self.indexInt = index.row;
+    if (index.section==1) {
+        self.isTop = YES;
+    }
+    else
+    {
+        self.isTop = NO;
+    }
+
+      //单例工具
+    LDImagePicker *imagePicker = [LDImagePicker sharedInstance];
+    imagePicker.delegate = self;
+      //设置宽高比scale来设置剪切框大小，剪切框宽度固定为屏幕宽度
+    [imagePicker showImagePickerWithType:ImagePickerPhoto   InViewController:self Scale:0.56];
+}
+
+
+- (void)imagePickerDidCancel:(LDImagePicker *)imagePicker{
+    
+}
+- (void)imagePicker:(LDImagePicker *)imagePicker  didFinished:(UIImage *)editedImage{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [UploadImageApi requestimagedata:editedImage success:^(NSString * _Nonnull response) {
+        [MBProgressHUD hideHUDForView:self.view];
+        if (self.isTop) {
+            companyListModel *model = [self.bannerArray objectAtIndex:self.indexInt];
+            model.picUrl = response.copy?:@"";
+
+            [self.tableView reloadData];
         }
+        else{
+            companyListModel *model = [self.bottomArray objectAtIndex:self.indexInt];
+            model.picUrl = response.copy?:@"";
+            [self.tableView reloadData];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideHUDForView:self.view];
     }];
 }
 
@@ -698,6 +694,43 @@ static NSString *createidentfi5 = @"createidentfi5";
     self.serviceScope = serviceScopeText.text?:@"";
     UITextField *infoText = [self.tableView viewWithTag:106];
     self.companyIntroduction = infoText.text?:@"";
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    //第二组可以左滑删除
+    if (indexPath.section==1||indexPath.section==2) {
+        return YES;
+    }
+    return NO;
+}
+ 
+// 定义编辑样式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+ 
+// 进入编辑模式，按下出现的编辑按钮后,进行删除操作
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (indexPath.section==1) {
+            
+            companyListModel *model = self.bannerArray[indexPath.row];
+            model.picUrl = @"";
+            model.picHref = @"";
+            [self.tableView reloadData];
+        }
+        if (indexPath.section == 2) {
+            companyListModel *model = self.bottomArray[indexPath.row];
+            model.picUrl = @"";
+            model.picHref = @"";
+            [self.tableView reloadData];
+        }
+    }
+}
+ 
+// 修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
 }
 
 @end

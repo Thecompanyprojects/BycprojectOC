@@ -50,7 +50,6 @@
     if(!_leftImg)
     {
         _leftImg = [[UIImageView alloc] init];
-//        _leftImg.image = [UIImage imageNamed:@"jiajia1"];
         _leftImg.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
         [_leftImg addGestureRecognizer:tapGesture];

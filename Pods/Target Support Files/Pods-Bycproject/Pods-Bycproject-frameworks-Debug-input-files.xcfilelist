@@ -6,6 +6,7 @@ ${BUILT_PRODUCTS_DIR}/GTMBase64/GTMBase64.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/JKCountDownButton/JKCountDownButton.framework
 ${BUILT_PRODUCTS_DIR}/JXBWebKit/JXBWebKit.framework
+${BUILT_PRODUCTS_DIR}/LDImagePicker/LDImagePicker.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework

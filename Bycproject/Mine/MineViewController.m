@@ -281,6 +281,9 @@
     else
     {
         CreatecompanyVC *vc = [CreatecompanyVC new];
+        vc.successBlock = ^{
+            [self getmineCompanyinfo];
+        };
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

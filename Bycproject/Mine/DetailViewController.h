@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^RefreshBlock)(NSDictionary *dic);
 @interface DetailViewController : BaseViewController
 @property (copy, nonatomic) RefreshBlock refreshBlock;
