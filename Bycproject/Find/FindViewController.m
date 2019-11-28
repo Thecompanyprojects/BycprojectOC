@@ -111,7 +111,7 @@
 
 -(void)creageSdcycle
 {
-    self.imageArray = [NSMutableArray arrayWithObjects:@"http://pic39.nipic.com/20140307/13928177_195158772185_2.jpg",@"http://pic39.nipic.com/20140307/13928177_195158772185_2.jpg",@"http://photocdn.sohu.com/20120213/Img334502666.jpg", nil];
+    self.imageArray = [NSMutableArray arrayWithObjects:banner0url,banner1url,banner2url,banner3url,nil];
     
     self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(11, getRectNavAndStatusHight+20,  WIDTH-22, 130)  delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
@@ -251,6 +251,14 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataSource[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    companyViewController *vc = [companyViewController new];
+    companyModel *model = self.dataSource[indexPath.row];
+    vc.companyId = [NSString stringWithFormat:@"%ld",(long)model.customId];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

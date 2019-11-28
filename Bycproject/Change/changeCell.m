@@ -49,6 +49,14 @@
     }];
 }
 
+- (void)setModel:(foodModel *)model
+{
+    [self.bgImg sd_setImageWithURL:[NSURL URLWithString:model.demoLogo] placeholderImage:[UIImage imageNamed:@""]];
+    self.titleLab.text = model.title?:@"";
+    self.priceLab.text = model.price?:@"";
+}
+
+
 #pragma mark - getters
 
 -(UIImageView *)bgImg
@@ -56,7 +64,7 @@
     if(!_bgImg)
     {
         _bgImg = [UIImageView new];
-        _bgImg.backgroundColor = [UIColor orangeColor];
+        _bgImg.backgroundColor = [UIColor clearColor];
         _bgImg.contentMode = UIViewContentModeScaleAspectFill;
         _bgImg.clipsToBounds = YES;
     }
@@ -70,7 +78,7 @@
         _titleLab = [UILabel new];
         _titleLab.numberOfLines = 2;
         _titleLab.textColor = [UIColor blackColor];
-        _titleLab.text = @"这个地方是介绍这个地方是介绍这个地方是介绍这个地方是介绍";
+        
         _titleLab.font = [UIFont systemFontOfSize:12];
     }
     return _titleLab;
@@ -81,7 +89,7 @@
     if(!_priceLab)
     {
         _priceLab = [UILabel new];
-        _priceLab.text = @"参考价￥34.90起";
+      
         _priceLab.font = [UIFont systemFontOfSize:12];
         _priceLab.textColor = [UIColor colorWithHexString:@"757575"];
     }

@@ -20,6 +20,21 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>上传照片等功能将访问你的相机</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>您的位置将用来获取所在地的附近信息,帮助您更加方便的获取信息</string>
+	<key>NSLocationUsageDescription</key>
+	<string>您的位置将用来获取所在地的附近信息,帮助您更加方便的获取信息</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>您的位置将用来获取所在地的附近信息,帮助您更加方便的获取信息</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>上传照片等功能将访问你的相册</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -28,6 +43,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -39,20 +56,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>上传照片等功能将访问你的相机</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>上传照片等功能将访问你的相册</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>您的位置将用来获取所在地的附近信息,帮助您更加方便的获取信息</string>
-	<key>NSLocationUsageDescription</key>
-	<string>您的位置将用来获取所在地的附近信息,帮助您更加方便的获取信息</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>您的位置将用来获取所在地的附近信息,帮助您更加方便的获取信息</string>
 </dict>
 </plist>

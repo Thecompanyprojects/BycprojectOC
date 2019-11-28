@@ -40,11 +40,21 @@ extern NSString * const saveHeadquartersUrl;
 
 extern NSString * const getNoVipYellowPage;
 
+extern NSString * const homegetNoVipYellowPage;
+
 extern NSString * const saveAreaUrl;
 
 extern NSString * const findCompanyListUrl;
 
 extern NSString * const tplistUrl;
+
+extern NSString * const designerUrl;
+
+extern NSString * const banner0url;
+extern NSString * const banner1url;
+extern NSString * const banner2url;
+extern NSString * const banner3url;
+
 @end
 
 NS_ASSUME_NONNULL_END

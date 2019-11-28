@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "foodModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface changeCell : UICollectionViewCell
-
+@property (nonatomic,strong) foodModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

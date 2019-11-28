@@ -52,10 +52,17 @@ static NSString *companyident4 = @"companyident4";
 
 -(void)getdatafromWeb
 {
-    NSString *url = [BaseURL stringByAppendingFormat:@"%@", getNoVipYellowPage];
+    NSString *url = [NSString new];
+    if (self.isChange) {
+        url = [BaseURL stringByAppendingFormat:@"%@", getNoVipYellowPage];
+    }
+    else
+    {
+        url = [BaseURL stringByAppendingFormat:@"%@", homegetNoVipYellowPage];
+    }
     NSString *companyId = self.companyId?:@"";
     NSString *agencyId = [[NSUserDefaults standardUserDefaults] objectForKey:@"agencyId"];
-//    agencyId = @"99789";
+    
     NSDictionary *params = @{@"companyId":companyId,@"agencyId":agencyId};
     
     [NetManager afPostRequest:url parms:params finished:^(id responseObj) {

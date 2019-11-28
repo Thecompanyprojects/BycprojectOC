@@ -50,6 +50,9 @@ NSString * const saveHeadquartersUrl = @"api/company/saveHeadquarters.do";
 //店铺详情
 NSString * const getNoVipYellowPage = @"api/company/getNoVipYellowPage.do";
 
+//首页店铺详情
+NSString * const homegetNoVipYellowPage = @"api/byc/company/getNoVipYellowPage.do";
+
 //修改公司
 NSString * const saveAreaUrl = @"api/area/saveArea.do";
 
@@ -58,6 +61,16 @@ NSString * const findCompanyListUrl = @"api/company/findCompanyList.do";
 
 //查询所有商家类别
 NSString * const tplistUrl = @"api/byc/company/tplist.do";
+
+//找设计
+NSString * const designerUrl = @"api/byc/designer/list.do";
+
+//banner
+NSString * const banner0url = @"http://bycimg.bilinerju.com/img/2019-11-26/f8f1754dd31f47ceb78a82a35db3a585.jpg";
+NSString * const banner1url = @"http://bycimg.bilinerju.com/img/2019-11-26/f2ba13265fd24615bc4b1aa5b0748cb4.jpg";
+NSString * const banner2url = @"http://bycimg.bilinerju.com/img/2019-11-26/38d13f47b26b4e5d880c6b2f0843c380.jpg";
+NSString * const banner3url = @"http://bycimg.bilinerju.com/img/2019-11-26/55264b9ccb584bbdaa1af04f89b73b2f.jpg";
+
 @implementation WangConst
 
 @end

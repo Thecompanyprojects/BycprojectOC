@@ -540,11 +540,7 @@ static NSString *createidentfi5 = @"createidentfi5";
 
 -(void)changesubmitBtnclick
 {
-//    if (self.imgList.length > 5) {
-//        NSRange deleteRange = {([self.imgList length] - 2), 1};
-//        [self.imgList deleteCharactersInRange:deleteRange];
-//    }
-    
+
     NSString *url = [BaseURL stringByAppendingFormat:@"%@", saveAreaUrl];
     NSInteger companyId = [self.companyId intValue];
     NSString *companyName = self.companyName?:@"";
@@ -610,7 +606,6 @@ static NSString *createidentfi5 = @"createidentfi5";
 
 -(void)myTabVClick:(UITableViewCell *)cell
 {
-    
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
     self.indexInt = index.row;
     if (index.section==1) {

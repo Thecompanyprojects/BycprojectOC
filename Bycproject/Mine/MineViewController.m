@@ -76,7 +76,6 @@
     }];
 }
 
-
 -(void)getmineCompanyinfo
 {
     NSString *url = [BaseURL stringByAppendingFormat:@"%@", findCompanyListUrl];
@@ -167,7 +166,6 @@
     return cell;
 }
 
-
 //通过设置SupplementaryViewOfKind 来设置头部或者底部的view，其中 ReuseIdentifier 的值必须和 注册是填写的一致，本例都为 “reusableView”
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -208,7 +206,7 @@
     [bgImg addSubview:contentLab];
     contentLab.textColor = [UIColor colorWithHexString:@"#7c7c7c"];
     contentLab.font = [UIFont systemFontOfSize:13];
-//
+
     if (!self.isCompany) {
         contentLab.text = @"请创建您的公司";
     }

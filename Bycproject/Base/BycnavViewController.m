@@ -9,7 +9,6 @@
 #import "BycnavViewController.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 
-
 @interface BycnavViewController ()<UIGestureRecognizerDelegate>
 
 @end

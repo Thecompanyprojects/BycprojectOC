@@ -15,6 +15,9 @@
 #import "homestrategyVC.h"
 #import "homeeffectVC.h"
 #import "AddressViewController.h"
+#import "renovationcaseVC.h"
+#import "homefurnishingVC.h"
+#import "designpersonVC.h"
 
 @interface HomeViewController ()<XXPageTabViewDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) MenuView *menuview;
@@ -38,15 +41,8 @@
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = self.navTitleView;
     [self createtapView];
-    self.menuview = [[MenuView alloc] init];
-    if (isiPhoneX) {
-        self.menuview.frame = CGRectMake(0, 88, WIDTH, 180);
-    }
-    else
-    {
-        self.menuview.frame = CGRectMake(0, 64, WIDTH, 180);
-    }
     [self.view addSubview:self.menuview];
+    
     [self getinfofromweb];
 }
 
@@ -62,6 +58,39 @@
         
     }];
 }
+
+-(MenuView *)menuview
+{
+    if(!_menuview)
+    {
+        _menuview = [[MenuView alloc] init];
+        if (isiPhoneX) {
+            _menuview.frame = CGRectMake(0, 88, WIDTH, 180);
+        }
+        else
+        {
+            _menuview.frame = CGRectMake(0, 64, WIDTH, 180);
+        }
+        _menuview.view0.userInteractionEnabled = YES;
+        _menuview.view1.userInteractionEnabled = YES;
+        _menuview.view2.userInteractionEnabled = YES;
+        _menuview.view3.userInteractionEnabled = YES;
+        _menuview.view4.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tapGesturRecognizer0 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction0:)];
+        [_menuview.view0 addGestureRecognizer:tapGesturRecognizer0];
+        UITapGestureRecognizer *tapGesturRecognizer1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction1:)];
+        [_menuview.view1 addGestureRecognizer:tapGesturRecognizer1];
+        UITapGestureRecognizer *tapGesturRecognizer2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction2:)];
+        [_menuview.view2 addGestureRecognizer:tapGesturRecognizer2];
+        UITapGestureRecognizer *tapGesturRecognizer3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction3:)];
+        [_menuview.view3 addGestureRecognizer:tapGesturRecognizer3];
+        UITapGestureRecognizer *tapGesturRecognizer4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction4:)];
+        [_menuview.view4 addGestureRecognizer:tapGesturRecognizer4];
+    }
+    return _menuview;
+}
+
 
 -(UIView *)navTitleView
 {
@@ -184,6 +213,40 @@
         [[NSNotificationCenter defaultCenter]postNotification:notice];
         
     };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - 页面跳转
+
+-(void)tapAction0:(id)tap
+{
+
+}
+
+-(void)tapAction1:(id)tap
+{
+
+}
+
+/// 建材家居
+/// @param tap 建材家居
+-(void)tapAction2:(id)tap
+{
+    homefurnishingVC *vc = [homefurnishingVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+/// 装修案例
+/// @param tap 装修案例
+-(void)tapAction3:(id)tap
+{
+    renovationcaseVC *vc = [renovationcaseVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)tapAction4:(id)tap
+{
+    designpersonVC *vc = [designpersonVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
