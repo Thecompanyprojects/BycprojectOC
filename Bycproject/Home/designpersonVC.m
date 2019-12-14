@@ -55,6 +55,7 @@ static NSString *designidentfity = @"designidentfity";
 
 -(void)createData
 {
+    [self.dataSource removeAllObjects];
     NSString *url = [BaseURL stringByAppendingFormat:@"%@", designerUrl];
     NSDictionary *params = @{@"type":self.typeStr?:@"0"};
     [NetManager afPostRequest:url parms:params finished:^(id responseObj) {

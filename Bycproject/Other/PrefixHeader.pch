@@ -37,5 +37,7 @@
 #import "VHLNavigation.h"
 #import "UIButton+Extension.h"
 #import <LDImagePicker/LDImagePicker.h>
+#import "FoodinfoViewController.h"
+
 
 #endif /* PrefixHeader_pch */

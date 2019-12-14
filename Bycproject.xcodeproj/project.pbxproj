@@ -71,6 +71,10 @@
 		53C9F6822364BC0800CE51AB /* companyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F6812364BC0800CE51AB /* companyListModel.m */; };
 		53C9F68C2365674D00CE51AB /* companyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F68B2365674D00CE51AB /* companyManager.m */; };
 		53C9F68F23659B7800CE51AB /* headImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C9F68E23659B7800CE51AB /* headImgModel.m */; };
+		53CC133F23A51AC300310725 /* FoodinfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC133E23A51AC300310725 /* FoodinfoViewController.m */; };
+		53CC134323A51DCD00310725 /* foodReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134223A51DCD00310725 /* foodReusableView.m */; };
+		53CC134723A524AC00310725 /* foodinfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134623A524AC00310725 /* foodinfoModel.m */; };
+		53CC134A23A524E300310725 /* foodinfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134923A524E200310725 /* foodinfoCell.m */; };
 		53CE2DCC238C29ED00BEEE74 /* changeinfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CE2DCB238C29ED00BEEE74 /* changeinfoVC.m */; };
 		53E18D0D2360B78800E39683 /* NSObject+CompressImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D0C2360B78800E39683 /* NSObject+CompressImage.m */; };
 		53E18D1023616AEE00E39683 /* changemineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D0F23616AEE00E39683 /* changemineVC.m */; };
@@ -267,6 +271,14 @@
 		53C9F68B2365674D00CE51AB /* companyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = companyManager.m; sourceTree = "<group>"; };
 		53C9F68D23659B7800CE51AB /* headImgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headImgModel.h; sourceTree = "<group>"; };
 		53C9F68E23659B7800CE51AB /* headImgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headImgModel.m; sourceTree = "<group>"; };
+		53CC133D23A51AC300310725 /* FoodinfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodinfoViewController.h; sourceTree = "<group>"; };
+		53CC133E23A51AC300310725 /* FoodinfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodinfoViewController.m; sourceTree = "<group>"; };
+		53CC134123A51DCD00310725 /* foodReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foodReusableView.h; sourceTree = "<group>"; };
+		53CC134223A51DCD00310725 /* foodReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foodReusableView.m; sourceTree = "<group>"; };
+		53CC134523A524AC00310725 /* foodinfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foodinfoModel.h; sourceTree = "<group>"; };
+		53CC134623A524AC00310725 /* foodinfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foodinfoModel.m; sourceTree = "<group>"; };
+		53CC134823A524E200310725 /* foodinfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foodinfoCell.h; sourceTree = "<group>"; };
+		53CC134923A524E200310725 /* foodinfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foodinfoCell.m; sourceTree = "<group>"; };
 		53CE2DCA238C29ED00BEEE74 /* changeinfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = changeinfoVC.h; sourceTree = "<group>"; };
 		53CE2DCB238C29ED00BEEE74 /* changeinfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = changeinfoVC.m; sourceTree = "<group>"; };
 		53E18D0B2360B78800E39683 /* NSObject+CompressImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+CompressImage.h"; sourceTree = "<group>"; };
@@ -534,6 +546,26 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		53CC134023A51DBA00310725 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53CC134123A51DCD00310725 /* foodReusableView.h */,
+				53CC134223A51DCD00310725 /* foodReusableView.m */,
+				53CC134823A524E200310725 /* foodinfoCell.h */,
+				53CC134923A524E200310725 /* foodinfoCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		53CC134423A5249C00310725 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				53CC134523A524AC00310725 /* foodinfoModel.h */,
+				53CC134623A524AC00310725 /* foodinfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		53E18D11236170B500E39683 /* GYCursorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +737,8 @@
 		53ED93FC2355C834008513DC /* Change */ = {
 			isa = PBXGroup;
 			children = (
+				53CC134423A5249C00310725 /* Model */,
+				53CC134023A51DBA00310725 /* View */,
 				53ED940F2355CA00008513DC /* ChangeViewController.h */,
 				53ED94102355CA00008513DC /* ChangeViewController.m */,
 				53CE2DCA238C29ED00BEEE74 /* changeinfoVC.h */,
@@ -713,6 +747,8 @@
 				53FDD7222357592A000ADA1F /* changeCell.m */,
 				53FDD72423575A88000ADA1F /* headmenuView.h */,
 				53FDD72523575A88000ADA1F /* headmenuView.m */,
+				53CC133D23A51AC300310725 /* FoodinfoViewController.h */,
+				53CC133E23A51AC300310725 /* FoodinfoViewController.m */,
 			);
 			path = Change;
 			sourceTree = "<group>";
@@ -1116,6 +1152,7 @@
 				5352C3DC236A0C5100A1DF60 /* UIButton+Extension.m in Sources */,
 				532AC31E235E02BE0016987A /* AddressViewController.m in Sources */,
 				53C9F67A23631EDA00CE51AB /* effectModel.m in Sources */,
+				53CC134A23A524E300310725 /* foodinfoCell.m in Sources */,
 				53A8017C2359AA9D003726A9 /* ZZQResourceSheetView.m in Sources */,
 				53344650238592A300848AE9 /* renovationcaseVC.m in Sources */,
 				532AC33A236078070016987A /* WMSearchBar.m in Sources */,
@@ -1160,6 +1197,7 @@
 				53FDD70623572293000ADA1F /* homecompanyVC.m in Sources */,
 				53ED93BC2355C4F3008513DC /* AppDelegate.m in Sources */,
 				53A80195235A1C25003726A9 /* LoginViewController.m in Sources */,
+				53CC134323A51DCD00310725 /* foodReusableView.m in Sources */,
 				53A8019E235ADE9D003726A9 /* ForgetViewController.m in Sources */,
 				53A8016923599A60003726A9 /* companyCell0.m in Sources */,
 				5352C3D6236A04EF00A1DF60 /* createshowviewCell.m in Sources */,
@@ -1172,6 +1210,7 @@
 				5334464D2385927900848AE9 /* homefurnishingVC.m in Sources */,
 				532AC31B235CC37A0016987A /* mineinfoVC.m in Sources */,
 				53A8017A2359AA9D003726A9 /* ZZQAuthorizationManager.m in Sources */,
+				53CC134723A524AC00310725 /* foodinfoModel.m in Sources */,
 				53ED93F72355C6EC008513DC /* MainViewController.m in Sources */,
 				5352C3D9236A062C00A1DF60 /* createshowModel.m in Sources */,
 				532AC32E2360771A0016987A /* JFSearchView.m in Sources */,
@@ -1198,6 +1237,7 @@
 				53FDD71823574794000ADA1F /* companyCell.m in Sources */,
 				53E18D4223621EC400E39683 /* JDCategoryLeftTableCell.m in Sources */,
 				532AC300235B2B6E0016987A /* NetManager.m in Sources */,
+				53CC133F23A51AC300310725 /* FoodinfoViewController.m in Sources */,
 				53FDD6FD2357145E000ADA1F /* XXPageTabView.m in Sources */,
 				53A801822359ADA2003726A9 /* createcompanyCell1.m in Sources */,
 				53ED93CD2355C4F4008513DC /* main.m in Sources */,

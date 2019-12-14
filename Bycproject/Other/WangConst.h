@@ -50,6 +50,8 @@ extern NSString * const tplistUrl;
 
 extern NSString * const designerUrl;
 
+extern NSString * const detailUrl;
+
 extern NSString * const banner0url;
 extern NSString * const banner1url;
 extern NSString * const banner2url;

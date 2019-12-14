@@ -192,7 +192,7 @@
     view6.nameLab.text = @"吊顶";
     view7.nameLab.text = @"卫浴厨具";
     
-    UITapGestureRecognizer * tapGesturRecognizer0 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction0)];
+    UITapGestureRecognizer * tapGesturRecognizer0 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction0)];
     [view0 addGestureRecognizer:tapGesturRecognizer0];
     UITapGestureRecognizer * tapGesturRecognizer1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction1)];
     [view1 addGestureRecognizer:tapGesturRecognizer1];
@@ -281,7 +281,10 @@
 //点击item方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    FoodinfoViewController *VC = [FoodinfoViewController new];
+    foodModel *model = self.dataSource[indexPath.item];
+    VC.foodId = [NSString stringWithFormat:@"%ld",model.customId];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(UIView *)navTitleView

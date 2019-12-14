@@ -22,7 +22,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self vhl_setNavBarShadowImageHidden:YES];
-    // Do any additional setup after loading the view.
     [self createUI];
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -35,7 +34,6 @@
         [self getdataFromwebWith:@"2"];
         self.page++;
     }];
-    
 }
 
 -(void)getdataFromwebWith:(NSString *)str
@@ -57,6 +55,7 @@
             [self.dataSource addObjectsFromArray:array];
             [self.collectionView reloadData];
         }
+        
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
     } failed:^(NSString *errorMsg) {
@@ -91,6 +90,15 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 15;
+}
+
+//点击item方法
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    FoodinfoViewController *VC = [FoodinfoViewController new];
+    foodModel *model = self.dataSource[indexPath.item];
+    VC.foodId = [NSString stringWithFormat:@"%ld",model.customId];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(void)createUI

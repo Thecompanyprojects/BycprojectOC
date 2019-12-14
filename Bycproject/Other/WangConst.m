@@ -65,6 +65,9 @@ NSString * const tplistUrl = @"api/byc/company/tplist.do";
 //找设计
 NSString * const designerUrl = @"api/byc/designer/list.do";
 
+//商品详情
+NSString * const detailUrl = @"api/byc/goods/detail.do";
+
 //banner
 NSString * const banner0url = @"http://bycimg.bilinerju.com/img/2019-11-26/f8f1754dd31f47ceb78a82a35db3a585.jpg";
 NSString * const banner1url = @"http://bycimg.bilinerju.com/img/2019-11-26/f2ba13265fd24615bc4b1aa5b0748cb4.jpg";

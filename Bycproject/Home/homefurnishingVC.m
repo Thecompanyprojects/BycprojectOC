@@ -107,9 +107,14 @@
 //点击item方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    foodModel *model = self.dataSource[indexPath.item];
+    if (model.customId==0) {
+        return;
+    }
+    FoodinfoViewController *VC = [FoodinfoViewController new];
+    VC.foodId = [NSString stringWithFormat:@"%ld",model.customId];
+    [self.navigationController pushViewController:VC animated:YES];
 }
-
 
 -(void)createUI
 {
