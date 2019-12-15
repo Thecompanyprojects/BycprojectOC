@@ -15,12 +15,10 @@
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) foodinfoModel *modeldic;;
-
 @end
 
 static NSString *foodinfoidentfity = @"foodinfoidentfity";
 static NSString *foodinfohead = @"foodinfohead";
-
 
 @implementation FoodinfoViewController
 
@@ -28,9 +26,11 @@ static NSString *foodinfohead = @"foodinfohead";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"商品详情";
-    
     [self createUI];
-    [self createInfofromweb];
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+         [self createInfofromweb];
+    }];
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 -(void)createUI
@@ -55,9 +55,7 @@ static NSString *foodinfohead = @"foodinfohead";
 
 -(void)createInfofromweb
 {
-    
     self.dataSource = [NSMutableArray array];
-    
     NSString *url = [BaseURL stringByAppendingFormat:@"%@", detailUrl];
     NSDictionary *para = @{@"id":self.foodId?:@""};
     [NetManager afPostRequest:url parms:para finished:^(id responseObj) {
@@ -72,9 +70,9 @@ static NSString *foodinfohead = @"foodinfohead";
             [self.collectionView reloadData];
             
         }
-        
+        [self.collectionView.mj_header endRefreshing];
     } failed:^(NSString *errorMsg) {
-        
+        [self.collectionView.mj_header endRefreshing];
     }];
 }
 
