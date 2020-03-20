@@ -75,6 +75,7 @@
 		53CC134323A51DCD00310725 /* foodReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134223A51DCD00310725 /* foodReusableView.m */; };
 		53CC134723A524AC00310725 /* foodinfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134623A524AC00310725 /* foodinfoModel.m */; };
 		53CC134A23A524E300310725 /* foodinfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134923A524E200310725 /* foodinfoCell.m */; };
+		53CC134D23A65E9900310725 /* CaseinfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC134C23A65E9900310725 /* CaseinfoViewController.m */; };
 		53CE2DCC238C29ED00BEEE74 /* changeinfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CE2DCB238C29ED00BEEE74 /* changeinfoVC.m */; };
 		53E18D0D2360B78800E39683 /* NSObject+CompressImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D0C2360B78800E39683 /* NSObject+CompressImage.m */; };
 		53E18D1023616AEE00E39683 /* changemineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E18D0F23616AEE00E39683 /* changemineVC.m */; };
@@ -279,6 +280,8 @@
 		53CC134623A524AC00310725 /* foodinfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foodinfoModel.m; sourceTree = "<group>"; };
 		53CC134823A524E200310725 /* foodinfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foodinfoCell.h; sourceTree = "<group>"; };
 		53CC134923A524E200310725 /* foodinfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foodinfoCell.m; sourceTree = "<group>"; };
+		53CC134B23A65E9900310725 /* CaseinfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaseinfoViewController.h; sourceTree = "<group>"; };
+		53CC134C23A65E9900310725 /* CaseinfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaseinfoViewController.m; sourceTree = "<group>"; };
 		53CE2DCA238C29ED00BEEE74 /* changeinfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = changeinfoVC.h; sourceTree = "<group>"; };
 		53CE2DCB238C29ED00BEEE74 /* changeinfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = changeinfoVC.m; sourceTree = "<group>"; };
 		53E18D0B2360B78800E39683 /* NSObject+CompressImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+CompressImage.h"; sourceTree = "<group>"; };
@@ -749,6 +752,8 @@
 				53FDD72523575A88000ADA1F /* headmenuView.m */,
 				53CC133D23A51AC300310725 /* FoodinfoViewController.h */,
 				53CC133E23A51AC300310725 /* FoodinfoViewController.m */,
+				53CC134B23A65E9900310725 /* CaseinfoViewController.h */,
+				53CC134C23A65E9900310725 /* CaseinfoViewController.m */,
 			);
 			path = Change;
 			sourceTree = "<group>";
@@ -1149,6 +1154,7 @@
 				53E18D1A236170B500E39683 /* GYSelectorCell.m in Sources */,
 				53CE2DCC238C29ED00BEEE74 /* changeinfoVC.m in Sources */,
 				53A801852359C987003726A9 /* createcompanyCell2.m in Sources */,
+				53CC134D23A65E9900310725 /* CaseinfoViewController.m in Sources */,
 				5352C3DC236A0C5100A1DF60 /* UIButton+Extension.m in Sources */,
 				532AC31E235E02BE0016987A /* AddressViewController.m in Sources */,
 				53C9F67A23631EDA00CE51AB /* effectModel.m in Sources */,

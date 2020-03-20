@@ -38,6 +38,6 @@
 #import "UIButton+Extension.h"
 #import <LDImagePicker/LDImagePicker.h>
 #import "FoodinfoViewController.h"
-
+#import "CaseinfoViewController.h"
 
 #endif /* PrefixHeader_pch */

@@ -117,4 +117,10 @@ static NSString *homecaseidendfity = @"homecaseidendfity";
     return 230;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CaseinfoViewController *vc = [CaseinfoViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end
